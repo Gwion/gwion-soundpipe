@@ -1,0 +1,6 @@
+*.o
+*.a
+h/soundpipe.h
+h/sp_base.h
+lib/fft/fft.c
+sp_dict.lua
