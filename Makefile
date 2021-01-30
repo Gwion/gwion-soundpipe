@@ -31,7 +31,9 @@ else
 SPFLOAT=float
 endif
 
+$(info USE_DOUBLE set to ${USE_DOUBLE})
 $(info SPFLOAT set to ${SPFLOAT})
+
 CFLAGS += -DSP_VERSION=$(VERSION) -O3 -DSPFLOAT=${SPFLOAT} #-std=c99
 CFLAGS += -I$(INTERMEDIATES_PREFIX)/h -Ih -I/usr/local/include -fPIC
 UTIL += $(INTERMEDIATES_PREFIX)/util/wav2smp
@@ -57,7 +59,7 @@ endif
 	cat $(HPATHS) >> $@
 	echo "#endif" >> $@
 
-$(HDIR)/sp_base.h: h/base.h 
+$(HDIR)/sp_base.h: h/base.h
 	>$@
 	echo "#ifndef SOUNDPIPE_H" >> $@
 ifeq (${USE_DOUBLE}, 1)
