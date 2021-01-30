@@ -49,7 +49,7 @@ $(LIBSOUNDPIPE): $(MPATHS) $(LPATHS) | $(INTERMEDIATES_PREFIX)
 
 $(HDIR)/soundpipe.h: $(HPATHS) | $(INTERMEDIATES_PREFIX)/h
 	echo "#ifndef SOUNDPIPE_H" >> $@
-ifdef USE_DOUBLE
+ifeq ($(USE_DOUBLE), 1)
 	echo "#define USE_DOUBLE" >> $@
 endif
 	echo "#define SOUNDPIPE_H" >> $@
