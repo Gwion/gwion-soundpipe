@@ -25,7 +25,7 @@ MPATHS += $(addprefix $(MODDIR)/, $(addsuffix .o, $(MODULES)))
 
 include $(CONFIG)
 
-ifdef (${USE_DOUBLE})
+ifeq (${USE_DOUBLE}, 1)
 SPFLOAT = double
 else
 SPFLOAT = float
