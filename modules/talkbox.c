@@ -21,7 +21,7 @@
 
 #define ORD_MAX 50
 
-static void lpc_durbin(SPFLOAT *r, int p, float *k, float *g)
+static void lpc_durbin(SPFLOAT *r, int p, SPFLOAT *k, SPFLOAT *g)
 {
   int i, j;
   SPFLOAT a[ORD_MAX], at[ORD_MAX], e=r[0];
@@ -50,7 +50,7 @@ static void lpc_durbin(SPFLOAT *r, int p, float *k, float *g)
   *g = (float)sqrt(e);
 }
 
-static void lpc(float *buf, float *car, uint32_t n, uint32_t o)
+static void lpc(SPFLOAT *buf, SPFLOAT *car, uint32_t n, uint32_t o)
 {
     SPFLOAT z[ORD_MAX], r[ORD_MAX], k[ORD_MAX], G, x;
     uint32_t i, j, nn=n;

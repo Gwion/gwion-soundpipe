@@ -3,8 +3,12 @@
 
 #define SP_BUFSIZE 4096
 #ifndef SPFLOAT
+#ifndef USE_DOUBLE
 #define SPFLOAT float
-#endif 
+#else
+#define SPFLOAT double
+#endif
+#endif
 #define SP_OK 1
 #define SP_NOT_OK 0
 
