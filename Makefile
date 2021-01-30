@@ -59,7 +59,7 @@ endif
 $(HDIR)/sp_base.h: h/base.h 
 	>$@
 	echo "#ifndef SOUNDPIPE_H" >> $@
-ifdef USE_DOUBLE
+ifeq ($(USE_DOUBLE), 1)
 	echo "#define USE_DOUBLE" >> $@
 endif
 	echo "#define SOUNDPIPE_H" >> $@
