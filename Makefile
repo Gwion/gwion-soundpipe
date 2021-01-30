@@ -25,7 +25,7 @@ MPATHS += $(addprefix $(MODDIR)/, $(addsuffix .o, $(MODULES)))
 
 include $(CONFIG)
 
-ifeq ($(USE_DOUBLE), 1)
+ifeq (${USE_DOUBLE}, 1)
 SPFLOAT=double
 else
 SPFLOAT=float
@@ -49,7 +49,7 @@ $(LIBSOUNDPIPE): $(MPATHS) $(LPATHS) | $(INTERMEDIATES_PREFIX)
 
 $(HDIR)/soundpipe.h: $(HPATHS) | $(INTERMEDIATES_PREFIX)/h
 	echo "#ifndef SOUNDPIPE_H" >> $@
-ifeq ($(USE_DOUBLE), 1)
+ifeq (${USE_DOUBLE}, 1)
 	echo "#define USE_DOUBLE" >> $@
 endif
 	echo "#define SOUNDPIPE_H" >> $@
@@ -59,7 +59,7 @@ endif
 $(HDIR)/sp_base.h: h/base.h 
 	>$@
 	echo "#ifndef SOUNDPIPE_H" >> $@
-ifeq ($(USE_DOUBLE), 1)
+ifeq (${USE_DOUBLE}, 1)
 	echo "#define USE_DOUBLE" >> $@
 endif
 	echo "#define SOUNDPIPE_H" >> $@
