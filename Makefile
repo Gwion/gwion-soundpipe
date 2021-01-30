@@ -27,6 +27,7 @@ include $(CONFIG)
 
 ifeq (${USE_DOUBLE}, 1)
 SPFLOAT=double
+CFLAGS += -DUSE_DOUBLE
 else
 SPFLOAT=float
 endif
@@ -54,7 +55,9 @@ $(HDIR)/soundpipe.h: $(HPATHS) | $(INTERMEDIATES_PREFIX)/h
 	echo "#ifndef SOUNDPIPE_H" >> $@
 ifeq (${USE_DOUBLE}, 1)
 	$(info set USE_DOUBLE in soundpipe.h)
+	echo "#ifndef USE_DOUBLE" >> $@
 	echo "#define USE_DOUBLE" >> $@
+  echo "endif"              >> $@
 endif
 	echo "#define SOUNDPIPE_H" >> $@
 	cat $(HPATHS) >> $@
@@ -65,7 +68,9 @@ $(HDIR)/sp_base.h: h/base.h
 	echo "#ifndef SOUNDPIPE_H" >> $@
 ifeq (${USE_DOUBLE}, 1)
 	$(info set USE_DOUBLE in sp_base.h)
+	echo "#ifndef USE_DOUBLE" >> $@
 	echo "#define USE_DOUBLE" >> $@
+  echo "endif"              >> $@
 endif
 	echo "#define SOUNDPIPE_H" >> $@
 	cat $< >> $@
