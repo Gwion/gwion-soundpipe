@@ -57,7 +57,7 @@ ifeq (${USE_DOUBLE}, 1)
 	$(info set USE_DOUBLE in soundpipe.h)
 	echo "#ifndef USE_DOUBLE" >> $@
 	echo "#define USE_DOUBLE" >> $@
-	echo "endif"              >> $@
+	echo "#endif"             >> $@
 endif
 	echo "#define SOUNDPIPE_H" >> $@
 	cat $(HPATHS) >> $@
@@ -70,7 +70,7 @@ ifeq (${USE_DOUBLE}, 1)
 	$(info set USE_DOUBLE in sp_base.h)
 	echo "#ifndef USE_DOUBLE" >> $@
 	echo "#define USE_DOUBLE" >> $@
-	echo "endif"              >> $@
+	echo "#endif"             >> $@
 endif
 	echo "#define SOUNDPIPE_H" >> $@
 	cat $< >> $@
