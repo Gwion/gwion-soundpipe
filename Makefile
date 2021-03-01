@@ -47,8 +47,16 @@ $(PREFIX)/lib \
 $(PREFIX)/share/doc/soundpipe:
 	mkdir -p $@
 
+ifeq ($(shell uname), Darwin)
+AR = /usr/bin/libtool
+AR_OPT = -static $(MPATHS) $(LPATHS) -o $@
+else
+AR = ar
+AR_OPT = rcs $@ $(MPATHS) $(LPATHS)
+endif
+
 $(LIBSOUNDPIPE): $(MPATHS) $(LPATHS) | $(INTERMEDIATES_PREFIX)
-	$(AR) rcs $@ $(MPATHS) $(LPATHS)
+	$(AR) $(AR_OPT)
 
 $(HDIR)/soundpipe.h: $(HPATHS) | $(INTERMEDIATES_PREFIX)/h
 	echo "#ifndef SOUNDPIPE_H" >> $@
