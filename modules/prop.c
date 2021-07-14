@@ -8,6 +8,7 @@
 
 #include <stdlib.h>
 #include <math.h>
+#include <ctype.h>
 #include "soundpipe.h"
 
 typedef struct {
@@ -156,7 +157,7 @@ static void mode_insert_event(prop_data *pd, char type)
     prop_list_append(pd->main, val);
 }
 
-static void mode_setdiv(prop_data *pd, char n)
+static void mode_setdiv(prop_data *pd, const uint32_t n)
 {
     if(pd->tmp == 0 && n == 0) n = 1;
     pd->tmp *= 10;
@@ -226,6 +227,13 @@ static int prop_parse(prop_data *pd, const char *str)
     while(*str != 0) {
         c = str[0];
 
+        if(isdigit(c)) {
+            char *end = NULL;
+            const uint32_t div = strtol(str, &end, 10);
+            mode_setdiv(pd, div);
+            str = end;
+            continue;
+        }
         switch(c) {
             case '+':
                 mode_insert_event(pd, PTYPE_ON);
@@ -236,7 +244,7 @@ static int prop_parse(prop_data *pd, const char *str)
             case '-':
                 mode_insert_event(pd, PTYPE_OFF);
                 break;
-
+/*
             case '0':
                 mode_setdiv(pd, 0);
                 break;
@@ -267,6 +275,7 @@ static int prop_parse(prop_data *pd, const char *str)
             case '9':
                 mode_setdiv(pd, 9);
                 break;
+*/
             case '(':
                 mode_setmul(pd);
                 break;
