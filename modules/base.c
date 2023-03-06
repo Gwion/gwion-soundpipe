@@ -52,7 +52,7 @@ int sp_destroy(sp_data **spp)
 int sp_process(sp_data *sp, void *ud, void (*callback)(sp_data *, void *))
 {
     SNDFILE *sf[sp->nchan];
-    char tmp[140];
+    char tmp[256];
     SF_INFO info;
     memset(&info, 0, sizeof(SF_INFO));
     SPFLOAT buf[sp->nchan][SP_BUFSIZE];
@@ -174,7 +174,7 @@ int sp_set(sp_param *p, SPFLOAT val) {
 
 int sp_out(sp_data *sp, uint32_t chan, SPFLOAT val)
 {
-    if(chan > sp->nchan - 1) {
+    if((int)chan > sp->nchan - 1) {
         fprintf(stderr, "sp_out: Invalid channel\n");
         return SP_NOT_OK;
     }

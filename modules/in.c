@@ -24,6 +24,7 @@ int sp_in_init(sp_data *sp, sp_in *p)
 int sp_in_compute(sp_data *sp, sp_in *p, SPFLOAT *in, SPFLOAT *out)
 {
     *out = 0;
-    fread(out, sizeof(SPFLOAT), 1, p->fp);
+    if(fread(out, sizeof(SPFLOAT), 1, p->fp) < 1)
+      return SP_NOT_OK;
     return SP_OK;
 }

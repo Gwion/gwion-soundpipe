@@ -23,7 +23,8 @@ int sp_tin_init(sp_data *sp, sp_tin *p)
 int sp_tin_compute(sp_data *sp, sp_tin *p, SPFLOAT *in, SPFLOAT *out)
 {
     if(*in) {
-        fread(&p->val, sizeof(SPFLOAT), 1, p->fp);
+        if(fread(&p->val, sizeof(SPFLOAT), 1, p->fp) < 1)
+          return SP_NOT_OK;
     }
 
     *out = p->val;

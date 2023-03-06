@@ -1,5 +1,7 @@
 *.o
 *.a
+*.bin
+*config.mk
 h/soundpipe.h
 h/sp_base.h
 lib/fft/fft.c

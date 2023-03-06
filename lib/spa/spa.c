@@ -13,7 +13,8 @@ int spa_open(sp_data *sp, sp_audio *spa, const char *name, int mode)
     if(mode == SPA_READ) {
         spa->fp = fopen(name, "rb");
         CHECK_NULL_FILE(spa->fp);
-        fread(header, spa->offset, 1, spa->fp);
+        if(fread(header, spa->offset, 1, spa->fp) < 1)
+          return SP_NOT_OK;
     } else if(mode == SPA_WRITE) {
         spa->fp = fopen(name, "wb");
         CHECK_NULL_FILE(spa->fp);
